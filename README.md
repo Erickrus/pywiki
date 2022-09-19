@@ -5,6 +5,9 @@
 ## Installation
 
 ```shell
+# clone the repository
+git clone https://github.com/Erickrus/pywiki
+
 # install required packages
 sudo pip3 install -r requirements.txt
 
