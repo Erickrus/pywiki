@@ -45,6 +45,31 @@ class Wiki:
         self.imgPattern = r'<[Ii][Mm][Gg][\w\W]+?/?>'
         self.urlPattern = r'<[aA][\w\W]+?/?>'
 
+    def find(self, keywords):
+        foundFilenames = []
+        for filename in glob.glob(os.path.join(self.baseDir, "**/*.md"), recursive=True):
+            found = 0
+            with open(filename, 'r') as f:
+                mdText = f.read().lower()
+            for keyword in keywords:
+                if mdText.find(keyword.lower()) >= 0:
+                    found += 1
+            if found>0:
+                foundFilenames.append({"filename": filename, "found":found})
+
+        filenames = []
+        foundFilenames = sorted(foundFilenames, key=lambda x: -x['found'])
+        for filename in foundFilenames:
+            filename = filename['filename']
+            title= os.path.basename(filename)[:-3].replace('_',' ').title()
+            filenames.append(
+                "<a class='innerLink' href='#' onclick='api.goto(\"%s\")'>%s</a><br/>" % (
+                    filename[len(self.baseDir):],
+                    title
+                )
+            )
+        return "\n".join(filenames), ''
+
     def display_dir(self, url):
         originUrl = ""+url
         if url.startswith('/'):
@@ -201,7 +226,7 @@ class WikiPageHandler(tornado.web.RequestHandler):
         data = json.loads(self.get_argument("json"))
         res = {}
 
-        #requiredFields = ["mdUrl"]
+        requiredFields = ["mdUrl"]
         requiredFields = []
         for requiredField in requiredFields:
             if requiredField not in data:
@@ -210,13 +235,18 @@ class WikiPageHandler(tornado.web.RequestHandler):
 
         mdUrl = data["mdUrl"]
         html, mdText = "Page not found", ""
-        try:
-            html, mdText = self.wiki.display(mdUrl)
-        except IsADirectoryError:
-            html, mdText = self.wiki.display_dir(mdUrl)
-        except:
-            traceback.print_exc()
-            pass
+
+        if mdUrl.startswith('find:'):
+            keywords = mdUrl[5:].strip().split(' ')
+            html, mdText = self.wiki.find(keywords)
+        else:
+            try:
+                html, mdText = self.wiki.display(mdUrl)
+            except IsADirectoryError:
+                html, mdText = self.wiki.display_dir(mdUrl)
+            except:
+                traceback.print_exc()
+                pass
 
         res = {
             "mdUrl": mdUrl, 
