@@ -1,0 +1,85 @@
+<html>
+   <head>
+      <title>PyWiki</title>
+      <link rel="stylesheet" href="/static/css/main.css" />
+      <link rel="stylesheet" href="/static/css/tab.css" />
+      <script src='/static/js/MathJax-2.7.5/MathJax.js'></script>
+      <script>MathJax.Hub.Config({
+         config: ["MMLorHTML.js"],
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
+         tex2jax: {
+           inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+           displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+           processEscapes: true,
+           processEnvironments: true,
+           ignoreClass: ".*|",
+           processClass: "arithmatex"
+         },
+         TeX: {
+           extensions: ["AMSmath.js", "AMSsymbols.js"],
+           TagSide: "right",
+           TagIndent: ".8em",
+           MultLineWidth: "85%",
+           equationNumbers: {
+             autoNumber: "AMS",
+           },
+           unicode: {
+             fonts: "STIXGeneral,'Arial Unicode MS'"
+           }
+         },
+         showProcessingMessages: false,
+         messageStyle: 'none'
+         });
+      </script>
+      <script src='/static/js/jquery-3.2.1.min.js'></script>
+      <script src='/static/js/api.js'></script>
+   </head>
+   <body>
+      <h2>PyWiki</h2>
+      <hr/>
+      <div style='background-color:#DDDDDD'>
+         &nbsp;Url: <input id='mdUrl' size=85% type='text' value='/' /> 
+         <input id='goto' type='button' value='goto' onclick='api.wikiPage(false);'/>
+         <input id='backward' type='button' value='backward' onclick='api.backward()'>
+         <input id='modify' type='button' value='modify' onclick='api.wikiModify()'>
+      </div>
+      <div class="tab">
+         <button id='viewButton' class="tablinks" onclick="openTab(event, 'viewTab')">View</button>
+         <button id='editButton' class="tablinks" onclick="openTab(event, 'editTab')">Edit</button>
+      </div>
+      <div id="viewTab" class="tabcontent">
+         <div id='md' ></div>
+      </div>
+      <div id="editTab" class="tabcontent">
+         <div >
+            <textarea id='mdEdit' cols=100% rows=100%></textarea>
+         </div>
+      </div>
+      <script>
+         $("#mdUrl").keyup(function(event) {
+           if (event.keyCode === 13) {
+             $("#goto").click();
+           }
+         });
+         
+         
+         function openTab(evt, tabName) {
+           var tabcontent = document.getElementsByClassName("tabcontent");
+           for (var i = 0; i < tabcontent.length; i++) {
+             tabcontent[i].style.display = "none";
+           }
+           var tablinks = document.getElementsByClassName("tablinks");
+           for (var i = 0; i < tablinks.length; i++) {
+             tablinks[i].className = tablinks[i].className.replace(" active", "");
+           }
+           document.getElementById(tabName).style.display = "block";
+           evt.currentTarget.className += " active";
+         }
+         
+         document.getElementById('viewButton').click();
+         document.getElementById('goto').click();
+         
+      </script>
+   </body>
+</html>
