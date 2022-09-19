@@ -36,5 +36,5 @@ If you want to find by keywords, you can input `find: keyword1 keyword2`. Then h
 
 Notice find is just search files one by one. The search engine is not leveraged yet. It could be slow when scale out.
 
-## Edit
+### Edit
 In `Edit` tab, you will find the corresponding markdown in text format. It can be edited and saved.
