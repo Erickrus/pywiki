@@ -1,6 +1,6 @@
 # PyWiki
 
-PyWiki is a very basic implementation of Wiki. Users could view and modify their markdown files.
+**PyWiki** is a very basic implementation of Wiki. Users could view and modify their markdown files. All markdown files can be stored under `repo` directory  and Users can organize them with sub-directories.
 
 ## installation
 
