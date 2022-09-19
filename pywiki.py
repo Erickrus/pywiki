@@ -135,7 +135,10 @@ class Wiki:
                 imStr = '<img src="data:image/%s;base64, %s" />' % (imExt.upper(), imB64)
                 mdText = mdText.replace(match, imStr)
 
-        mdHtml = md.markdown(mdText, extensions=[mdx_math.MathExtension(enable_dollar_delimiter=True)])
+        mdHtml = md.markdown(mdText, extensions=[
+            mdx_math.MathExtension(enable_dollar_delimiter=True), 
+            'fenced_code'
+        ])
         matches = re.findall(self.urlPattern, mdHtml)
         for match in matches:
             ahp = CustomizedHTMLParser()
