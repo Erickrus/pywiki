@@ -42,7 +42,6 @@
          &nbsp;Command: <input id='mdUrl' size=85% type='text' value='/' /> 
          <input id='goto' type='button' value='Go' onclick='api.wikiPage(false);'/>
          <input id='backward' type='button' value='Back' onclick='api.backward()'>
-         <input id='modify' type='button' value='Save' onclick='api.wikiModify()'>
       </div>
       <div class="tab">
          <button id='viewButton' class="tablinks" onclick="openTab(event, 'viewTab')">View</button>
@@ -53,7 +52,9 @@
       </div>
       <div id="editTab" class="tabcontent">
          <div >
-            <textarea id='mdEdit' cols=100% rows=100%></textarea>
+            <textarea id='mdEdit' cols=100% rows=20></textarea>
+	    <br/>
+	    <input id='modify' type='button' value='Save' onclick='api.wikiModify()'>
          </div>
       </div>
       <script>
