@@ -22,3 +22,14 @@ python3 pywiki.py
 
 You can open with your browser and access http://localhost:8080/static/index.html
 
+## usage
+### browse
+For normal md file, you can just **browse** it with url, put the relative path name e.g. `/dir1/dir2/test.md`. 
+
+### find
+If you want to find by keywords, you can input `find: keyword1 keyword2`. Then hit go to search. 
+
+Notice find is just search files one by one. The search engine is not leveraged yet. It could be slow when scale out.
+
+## edit
+In `Edit` tab, you will find the corresponding markdown in text format. It can be edited and saved.
