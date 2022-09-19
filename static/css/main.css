@@ -1,3 +1,9 @@
 .innerLink {
   background-color: #DDDDDD;
+  color:black
+}
+
+.innerLink:visited {
+  background-color: #DDDDDD;
+  color:black
 }
