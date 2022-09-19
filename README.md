@@ -9,7 +9,7 @@
 git clone https://github.com/Erickrus/pywiki
 
 # install required packages
-sudo pip3 install -r requirements.txt
+sudo pip3 install -r pywiki/requirements.txt
 
 # install mathjax
 wget https://github.com/mathjax/MathJax/archive/2.7.5.zip
