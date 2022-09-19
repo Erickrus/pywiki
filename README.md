@@ -13,7 +13,7 @@ sudo pip3 install -r requirements.txt
 
 # install mathjax
 wget https://github.com/mathjax/MathJax/archive/2.7.5.zip
-unzip 2.7.5.zip -d static/js
+unzip 2.7.5.zip -d pywiki/static/js
 rm 2.7.5.zip
 
 ```
