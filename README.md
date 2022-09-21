@@ -32,7 +32,7 @@ For normal md file, you can just **browse** it with url, put the relative path n
 If you want to go back, just click `Back` button.
 
 ### Find
-If you want to find by keywords, you can input `find: keyword1 keyword2`. Then hit go to search. 
+If you want to find by keywords, you can input `find: keyword1 keyword2`. Then hit enter to search. 
 
 Notice find is just search files one by one. The search engine is not leveraged yet. It could be slow when scale out.
 
