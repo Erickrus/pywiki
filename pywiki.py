@@ -275,6 +275,7 @@ class Application(tornado.web.Application):
 def main(argv):
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(portNum)
+    print("PyWiki service is available: http://localhost:8080/static/index.html")
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":

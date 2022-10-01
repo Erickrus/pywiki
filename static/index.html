@@ -39,8 +39,7 @@
       <h2>PyWiki</h2>
       <hr/>
       <div style='background-color:#DDDDDD'>
-         &nbsp;Command: <input id='mdUrl' size=85% type='text' value='/' /> 
-         <input id='goto' type='button' value='Go' onclick='api.wikiPage(false);'/>
+         &nbsp;Command: <input id='mdUrl' size=100% type='text' value='/' /> 
          <input id='backward' type='button' value='Back' onclick='api.backward()'>
       </div>
       <div class="tab">
@@ -60,7 +59,8 @@
       <script>
          $("#mdUrl").keyup(function(event) {
            if (event.keyCode === 13) {
-             $("#goto").click();
+             // $("#goto").click();
+	     api.wikiPage(false);
            }
          });
          
@@ -79,7 +79,8 @@
          }
          
          document.getElementById('viewButton').click();
-         document.getElementById('goto').click();
+         //document.getElementById('goto').click();
+	 api.wikiPage(false);
          
       </script>
    </body>
